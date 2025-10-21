@@ -1,0 +1,5 @@
+print("             Lunes  Martes Miercoles Jueves")
+print("-------------------------------------------")
+print("18:45-19:40|  ESP  |  ECP  |  ADP  |  POO  |")
+print("19:40-20:35|  ESP  |  ECP  |  ADP  |  POO  |")
+print("20:35-21:30|  ESP  |  ECP  |  ADP  |       |")
