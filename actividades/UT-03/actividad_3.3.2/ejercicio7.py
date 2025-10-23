@@ -7,6 +7,6 @@ minutos = (total_segundos % 3600) // 60
 
 segundos = total_segundos % 60
 
-print("Horas completas:", horas)
-print("Minutos completos restantes:", minutos)
-print("Segundos restantes:", segundos)
+print(f"Horas completas:{horas:02}")
+print(f"Minutos completos restantes:{minutos:02}")
+print(f"Segundos restantes:{segundos:02}")
