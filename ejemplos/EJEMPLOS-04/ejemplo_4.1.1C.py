@@ -6,30 +6,23 @@ ANSI_ARRIBA = "\033[F"
 ANSI_COLUMNA_40 = "\033[40C"
 
 
-num_alumnos= int(input(f"{ANSI_AZUL}Ingrese el numero de alumnos: {ANSI_RESET}"))
 notas_alumnos=[]
-
-num_validas=0
 num_aprobados=0
-for i in range(num_alumnos):
+i=0
+while nota>=0:
     nota=int(input(f"{ANSI_AZUL}Ingrese la nota del alumno {i+1} :{ANSI_RESET} "))
-    if nota < 0:
-        print(f"\t{ANSI_ARRIBA}{ANSI_COLUMNA_40}{ANSI_ROJO}->Nota incorrecta{ANSI_RESET}")
-    else:
+    if nota >= 0 and nota <= 10:
         notas_alumnos.append(nota)
-        num_validas=num_validas+1
         if nota >=5:
             num_aprobados=num_aprobados + 1
+    i =i+1
 
-if num_validas>0:
-    media_alumnos=sum(notas_alumnos)/num_validas
-    porcentaje_aprobados=num_aprobados/num_validas*100
+    media_alumnos=sum(notas_alumnos)/i
+    porcentaje_aprobados=num_aprobados/i*100
 
     print(f"{ANSI_VERDE}="*50,f"{ANSI_RESET}")
     print(f"{ANSI_AZUL}Numero de alumnos aprobados:{ANSI_RESET} {num_aprobados}")
-    print(f"{ANSI_AZUL}Numero de alumnos suspensos:{ANSI_RESET} {num_validas-num_aprobados}")
-    print(f"{ANSI_AZUL}Numero de alumnos validas:{ANSI_RESET} {num_validas}")
-    print(f"{ANSI_AZUL}Numero de alumnos desechada:{ANSI_RESET} {num_alumnos-num_validas}")
+    print(f"{ANSI_AZUL}Numero de alumnos suspensos:{ANSI_RESET} {i-num_aprobados}")
 
     print(f"{ANSI_AZUL}La media de alumnos:{ANSI_RESET}",media_alumnos,
           f"{ANSI_VERDE}MEDIA APROBADA{ANSI_RESET}"if media_alumnos >= 5 else

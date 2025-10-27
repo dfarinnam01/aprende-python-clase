@@ -11,7 +11,7 @@ notas_alumnos=[]
 num_validas=0
 num_aprobados=0
 for i in range(num_alumnos):
-    nota=int(input(f"{ANSI_AZUL}Ingrese el nota del alumno {i+1} :{ANSI_RESET} "))
+    nota=int(input(f"{ANSI_AZUL}Ingrese la nota del alumno {i+1} :{ANSI_RESET} "))
     if nota < 0:
         print(f"\t{ANSI_ROJO}->Nota incorrecta{ANSI_RESET}")
     else:
