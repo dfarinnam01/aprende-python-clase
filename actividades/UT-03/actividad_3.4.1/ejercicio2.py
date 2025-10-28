@@ -1,7 +1,12 @@
-nombre1=input("Introduce nombre 1: ")
-nombre2=input("Introduce nombre 2: ")
-nombre3=input("Introduce nombre 3: ")
+nombre1 = input("Introduce el primer nombre: ")
+nombre2 = input("Introduce el segundo nombre: ")
+nombre3 = input("Introduce el tercer nombre: ")
 
-if nombre1>nombre2:
-    if nombre2>nombre3:
-        print(nombre1,nombre2,nombre3)
+nombres = [nombre1, nombre2, nombre3]
+
+# Ordenamos alfabéticamente
+nombres.sort()
+
+print("Los nombres ordenados alfabéticamente son:")
+for nombre in nombres:
+    print(nombre)
