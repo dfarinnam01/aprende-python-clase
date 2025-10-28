@@ -31,8 +31,8 @@ for i in range(num_articulos):
     articulos.append({"descripcion": descripcion, "precio":  precio_redondeado,"cantidad":cantidad})
 
 factura=0
-for i in range(num_articulos):
-    factura=factura+articulos[i]["precio"]
+for articulo in articulos:
+    factura=factura+articulo["precio"]
 
 #print(f"Cliente {cliente['nombre']} con nif:{cliente['nif']} en la empresa {empresa['nombre']} con nif:{empresa['nif']}"
 # f" su factura es de {factura:.2f}€")
@@ -40,8 +40,8 @@ for i in range(num_articulos):
 print(f"{ANSI_VERDE}--------------FACTURA-------------------{ANSI_RESET}")
 print(f"{ANSI_CYAN}Empresa {empresa['nombre']} con nif:{empresa['nif']}{ANSI_RESET}")
 print(f"{ANSI_CYAN}Cliente {cliente['nombre']} con nif:{cliente['nif']}{ANSI_RESET}\n")
-for i in range(num_articulos):
-    print(f"{articulos[i]['descripcion']} {articulos[i]['precio']}  {articulos[i]["cantidad"]}")
+for articulo in articulos:
+    print(f"{articulo['descripcion']} {articulo['precio']}  {articulo["cantidad"]}")
 print(f"{ANSI_VERDE}----------------------------------------{ANSI_RESET}")
 print(f"{ANSI_ROJO}       Precio total {factura:.2f}{ANSI_RESET}")
 print(f"{ANSI_VERDE}----------------------------------------{ANSI_RESET}")
