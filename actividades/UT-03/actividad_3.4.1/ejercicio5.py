@@ -1,7 +1,10 @@
+print("Fecha 1")
+print("="*50)
 dia=input("Ingresa el dia: ")
 mes=input("Ingresa el mes: ")
 anyo=input("Ingresa el año: ")
-
+print("Fecha 2")
+print("="*50)
 dia2=input("Ingresa el dia: ")
 mes2=input("Ingresa el mes: ")
 anyo2=input("Ingresa el año: ")
