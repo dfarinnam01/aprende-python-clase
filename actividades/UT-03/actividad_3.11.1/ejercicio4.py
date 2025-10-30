@@ -1,30 +1,24 @@
-fecha1 = input("Introduce la primera fecha (dia/mes/año): ")
-fecha2 = input("Introduce la segunda fecha (dia/mes/año): ")
+fecha="20/01/2021"
+fecha_separada=fecha.split("/")
 
-dia1 = int(fecha1.split("/")[0])
-mes1 = int(fecha1.split("/")[1])
-anio1 = int(fecha1.split("/")[2])
+fecha2="24/03/2025"
+fecha_separada2=fecha2.split("/")
 
-dia2 = int(fecha2.split("/")[0])
-mes2 = int(fecha2.split("/")[1])
-anio2 = int(fecha2.split("/")[2])
-
-if anio1 < anio2:
-    menor = fecha1
-elif anio1 > anio2:
+print(fecha_separada2[1])
+if fecha_separada[2] < fecha_separada2[2]:
+    menor = fecha
+elif fecha_separada2[2] > fecha_separada[2]:
     menor = fecha2
 else:
-    if mes1 < mes2:
-        menor = fecha1
-    elif mes1 > mes2:
+    if fecha_separada[1] < fecha_separada2[1]:
+        menor = fecha
+    elif fecha_separada[1] > fecha_separada2[1]:
         menor = fecha2
     else:
-        if dia1 < dia2:
-            menor = fecha1
-        elif dia1 > dia2:
+        if fecha_separada[0] < fecha_separada2[0]:
+            menor = fecha
+        elif fecha_separada[0] > fecha_separada2[0]:
             menor = fecha2
         else:
             menor = "Ambas fechas son iguales."
-
-# Mostrar el resultado
 print("La fecha menor es:", menor)
