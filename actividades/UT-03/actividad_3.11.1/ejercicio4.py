@@ -1,10 +1,9 @@
-fecha="20/01/2021"
+fecha="24/1/2025"
 fecha_separada=fecha.split("/")
 
-fecha2="24/03/2025"
+fecha2="24/2/2025"
 fecha_separada2=fecha2.split("/")
 
-print(fecha_separada2[1])
 if fecha_separada[2] < fecha_separada2[2]:
     menor = fecha
 elif fecha_separada2[2] > fecha_separada[2]:
