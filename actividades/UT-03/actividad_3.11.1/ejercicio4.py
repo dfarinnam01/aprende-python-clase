@@ -1,5 +1,5 @@
-fecha1 = input("Ingrese la primera fecha (dd/mm/aaaa): ")
-fecha2 = input("Ingrese la segunda fecha (dd/mm/aaaa): ")
+fecha1 = input("Introduce la primera fecha (dd/mm/aaaa): ")
+fecha2 = input("Introduce la segunda fecha (dd/mm/aaaa): ")
 
 dia1 = int(fecha1.split("/")[0])
 mes1 = int(fecha1.split("/")[1])
