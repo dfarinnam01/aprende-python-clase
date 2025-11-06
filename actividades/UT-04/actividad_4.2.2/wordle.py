@@ -5,7 +5,7 @@ ANSI_ROJO = "\033[31m"
 ANSI_AMARILLO = "\033[33m"
 ANSI_CYAN = "\033[36m"
 ANSI_RESET = "\033[0m"
-palabras = ["perro"]
+palabras = ["lejos"]
 
 
 c_letras = {}
@@ -33,7 +33,7 @@ while intentos <6:
             c_letras[palabra_usuario[i]] -= 1
             print(ANSI_AMARILLO, palabra_usuario[i], ANSI_RESET, end="")
         else:
-            print(ANSI_ROJO,palabra_usuario[i],ANSI_RESET,end="")
+            print(palabra_usuario[i],end="")
     print("\n")
     if palabra_usuario == secreta:
         print("¡¡¡FELICIDADES ACERTASTE LA PALABRA")
