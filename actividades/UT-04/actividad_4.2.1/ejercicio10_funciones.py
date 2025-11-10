@@ -18,17 +18,23 @@ def sumar():
         num2 = int(input(f"Ingresa otro numero: {ANSI_RESET}"))
         print(num1 + num2)
     except:
-        print("No se pudo realizar la operacion")
+        print(f"{ANSI_ROJO}No se pudo realizar la operacion")
 
 def restar():
-    num1 = int(input(f"{ANSI_AMARILLO}Ingresa un numero: "))
-    num2 = int(input(f"Ingresa otro numero: {ANSI_RESET}"))
-    print(num1 - num2)
+    try:
+        num1 = int(input(f"{ANSI_AMARILLO}Ingresa un numero: "))
+        num2 = int(input(f"Ingresa otro numero: {ANSI_RESET}"))
+        print(num1 - num2)
+    except:
+        print(f"{ANSI_ROJO}No se pudo realizar la operacion")
 
 def multiplicar():
-    num1 = int(input(f"{ANSI_AMARILLO}Ingresa un numero: "))
-    num2 = int(input(f"Ingresa otro numero: {ANSI_RESET}"))
-    print( num1 * num2)
+    try:
+        num1 = int(input(f"{ANSI_AMARILLO}Ingresa un numero: "))
+        num2 = int(input(f"Ingresa otro numero: {ANSI_RESET}"))
+        print( num1 * num2)
+    except:
+        print(f"{ANSI_ROJO}No se pudo realizar la operacion")
 
 def dividir():
     try:
