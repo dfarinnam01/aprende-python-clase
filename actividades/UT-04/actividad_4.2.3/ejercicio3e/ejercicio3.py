@@ -14,7 +14,7 @@ while not acceso_permitido:
         else:
             print("El usuario estaba bloqueado")
     elif usuario:
-        if us.get_intentos(usuario_introducido) >= us.INTENTOS_MAX - 1:
+        if us.excedidos_intentos(usuario_introducido):
             print("El usuario bloqueado")
         else:
             us.inc_intentos(usuario_introducido)
