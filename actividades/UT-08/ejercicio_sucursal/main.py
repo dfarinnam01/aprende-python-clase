@@ -6,7 +6,8 @@ sucursal = Sucursal()
 sucursal.crear_cuenta("ES01", "Juan Pérez")
 sucursal.crear_cuenta("ES02", "Ana López")
 
-while True:
+salida=True
+while salida:
     print("\n====== MENÚ ======")
     print("1. Ingresar")
     print("2. Retirar")
@@ -24,9 +25,9 @@ while True:
             fecha = input("Fecha del movimiento: ")
             cantidad = float(input("Cantidad a ingresar: "))
             cuenta.ingresar(fecha, cantidad)
-            print("✅ Ingreso realizado")
+            print("Ingreso realizado")
         else:
-            print("❌ Cuenta no encontrada")
+            print("Cuenta no encontrada")
 
     elif opcion == "2":
         iban = input("IBAN: ")
@@ -37,7 +38,7 @@ while True:
             cantidad = float(input("Cantidad a retirar: "))
             cuenta.retirar(fecha, cantidad)
         else:
-            print("❌ Cuenta no encontrada")
+            print("Cuenta no encontrada")
 
     elif opcion == "3":
         iban_origen = input("IBAN origen: ")
@@ -51,14 +52,14 @@ while True:
             cantidad = float(input("Cantidad a transferir: "))
             origen.transferir(fecha, destino, cantidad)
         else:
-            print("❌ Alguna cuenta no existe")
+            print("Alguna cuenta no existe")
 
     elif opcion == "4":
         sucursal.mostrar_todas()
 
     elif opcion == "0":
-        print("👋 Saliendo del programa")
-        break
+        print("Saliendo del programa")
+        salida=False
 
     else:
-        print("❌ Opción inválida")
+        print("Opción inválida")

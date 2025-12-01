@@ -8,17 +8,15 @@ class Cuenta:
         self.saldo_actual = 0
         self.movimientos = []
 
-    # INGRESAR
     def ingresar(self, fecha, cantidad, concepto="Ingreso"):
         self.saldo_actual += cantidad
         self.movimientos.append(
             Movimiento(fecha, concepto, "INGRESO", cantidad)
         )
 
-    # RETIRAR
     def retirar(self, fecha, cantidad, concepto="Retiro"):
         if cantidad > self.saldo_actual:
-            print("❌ Saldo insuficiente")
+            print("Saldo insuficiente")
             return False
 
         self.saldo_actual -= cantidad
@@ -27,10 +25,9 @@ class Cuenta:
         )
         return True
 
-    # TRANSFERIR
     def transferir(self, fecha, cuenta_destino, cantidad):
         if cantidad > self.saldo_actual:
-            print("❌ Saldo insuficiente")
+            print("Saldo insuficiente")
             return False
 
         self.saldo_actual -= cantidad
@@ -53,7 +50,7 @@ class Cuenta:
             )
         )
 
-        print("✅ Transferencia realizada")
+        print("Transferencia realizada")
         return True
 
     def mostrar(self):
