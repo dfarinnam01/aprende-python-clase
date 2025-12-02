@@ -23,3 +23,6 @@ class Cuenta:
         return self.__iban
     def get_movimientos(self):
         return self.__movimientos
+
+    def get_saldo(self):
+        return self.__movimientos[-1].get_saldo()
