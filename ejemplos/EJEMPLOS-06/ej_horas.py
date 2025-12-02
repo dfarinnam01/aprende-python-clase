@@ -19,3 +19,4 @@ minutos_promedio = int((promedio_horas - horas_promedio) * 60)
 
 print(f"Han pasado {dias_transcurridos} días desde la salida del juego.")
 print(f"Promedio de juego por día: {horas_promedio} horas con {minutos_promedio} minutos")
+# LG 27G411A‑B
