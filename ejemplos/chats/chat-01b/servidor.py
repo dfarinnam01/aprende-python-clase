@@ -17,7 +17,7 @@ print("Conexion con: ",addr)
 
 while True:
     mensaje = conn.recv(1024).decode()
-    print("Cliente: ",mensaje)
+    print(f"{mensaje}",)
 
-    respuesta = input("Servidor: ")
+    respuesta = input(f"{CA.CodigosAnsi.GREEN}\t")
     conn.send(respuesta.encode())

@@ -1,6 +1,7 @@
 import socket
 
-HOST_DESTINO = '127.0.0.1'
+# HOST_DESTINO = '127.0.0.1'
+HOST_DESTINO = '192.168.60.54'
 PORT_DESTINO = 65432
 '''
     Codificaion PDU -> codigo:datos
