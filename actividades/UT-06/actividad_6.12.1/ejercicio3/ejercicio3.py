@@ -1,6 +1,6 @@
 with open("ejemplo.txt", "r",encoding="UTF-8") as f:
-    cl=0
+    total_palabras = 0
     for linea in f:
-        for letra in linea:
-            cl=cl+1
-    print(cl)
+        palabras = linea.split()
+        total_palabras += len(palabras)
+print("Número total de palabras",total_palabras)
