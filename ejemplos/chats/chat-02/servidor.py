@@ -2,7 +2,8 @@ import socket
 
 entradas=[]
 
-HOST = '127.0.0.1'
+# HOST = '127.0.0.1'#si solo queremos aceptar conexiones localhost
+HOST = '192.168.60.204'
 PORT = 65432
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -15,6 +16,7 @@ print("Conexion con: ",addr)
 while True:
     pdu = conn.recv(1024).decode()
     campos=pdu.split(":")
+    print("Cliente: ", pdu)
 
     if campos[0] == 0:
         print("Cliente se desconecto...")
