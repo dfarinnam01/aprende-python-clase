@@ -4,4 +4,4 @@ with open("ejemplo.txt", "r",encoding="UTF-8") as f:
         for letra in linea:
             if letra!="\n":
                 cl=cl+1
-    print(cl)
+print(cl)
