@@ -1,49 +1,37 @@
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton
+from PyQt6.QtWidgets import QApplication, QWidget, QLabel, QPushButton
 import sys
-class ContadorLineas(QWidget):
+class Contador(QWidget):
     def __init__(self):
         super().__init__()
+        self.contador = 0
         self.config_ui()
         self.show()
     def config_ui(self):
-        self.setWindowTitle("Contador de lineas")
+        self.setWindowTitle("Contador")
         self.setFixedSize(400, 300)
         self.move(100, 100)
         self.crear_widgets()
 
+    def incrementar(self):
+        self.contador += 1
+        self.label_contador.setText(str(self.contador))
+
+    def decrementar(self):
+        self.contador -= 1
+        self.label_contador.setText(str(self.contador))
     def crear_widgets(self):
-        label_titulo = QLabel("Fichero: ", self)
-        label_titulo.move(20, 20)
+        btn_sumar = QPushButton("+", self)
+        btn_sumar.move(100, 20)
+        btn_sumar.clicked.connect(self.incrementar)
 
-        self.edit_filename = QLineEdit(self)
-        self.edit_filename.move(100, 20)
-        self.edit_filename.resize(100, 25)
+        btn_restar = QPushButton("-", self)
+        btn_restar.move(200, 20)
+        btn_restar.clicked.connect(self.decrementar)
 
-        btn_cargar = QPushButton("Analizar", self)
-        btn_cargar.move(200, 20)
-        btn_cargar.clicked.connect(self.analiza_fichero)
-
-        label_lineas = QLabel(f"Numero de lineas del fichero", self)
-        label_lineas.setStyleSheet("font-weight: bold")
-        label_lineas.move(20, 60)
-
-        self.label_resultado = QLabel("", self)
-        self.label_resultado.move(20, 80)
-        self.label_resultado.resize(350, 25)
-        self.label_resultado.setStyleSheet("background-color: rgb(255, 255, 255);")
-
-    def calcular_lineas(self):
-        with open(self.edit_filename.text(), "r",encoding="UTF-8") as f:
-            c=0
-            for _ in f:
-                c=c+1
-            return c
-
-    def analiza_fichero(self):
-            num_lineas = self.calcular_lineas()
-            self.label_resultado.setText(f'El fichero tiene {num_lineas} lineas')
+        self.label_contador = QLabel(str(self.contador), self)
+        self.label_contador.setStyleSheet("font-weight: bold")
+        self.label_contador.move(20, 60)
+        self.label_contador.resize(30, 80)
 
 if __name__ == '__main__':
     # app = QApplication(sys.argv)
@@ -51,6 +39,5 @@ if __name__ == '__main__':
     # crear_widgets(ventana)
     # sys.exit(app.exec())
     app = QApplication(sys.argv)
-    ventana = ContadorLineas()
-    ventana.show()
+    ventana = Contador()
     sys.exit(app.exec())
