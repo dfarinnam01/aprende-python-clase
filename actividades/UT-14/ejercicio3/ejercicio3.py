@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QApplication, QWidget, QLineEdit, QLabel, QPushButton, QMessageBox
 import sys
-class Suma_ADV(QWidget):
+class Suma_ADV_label(QWidget):
     def __init__(self):
         super().__init__()
         self.suma = 0
@@ -17,8 +17,13 @@ class Suma_ADV(QWidget):
             n1 = int(self.label_input_n1.text())
             n2 = int(self.label_input_n2.text())
             self.label_suma.setText("Resultado: "+str(n1+n2))
+            self.msgBox.clear()
         except Exception:
-            QMessageBox.warning(self,"Error","Introduce numeros correctamente")
+            self.msgBox = QLabel("Introduce numeros correctamente",self)
+            self.msgBox.move(100, 120)
+            self.msgBox.setStyleSheet("color: red")
+            self.msgBox.show()
+
 
     def crear_widgets(self):
         self.label_input_n1=QLineEdit(self)
@@ -45,5 +50,5 @@ if __name__ == '__main__':
     # crear_widgets(ventana)
     # sys.exit(app.exec())
     app = QApplication(sys.argv)
-    ventana = Suma_ADV()
+    ventana = Suma_ADV_label()
     sys.exit(app.exec())
