@@ -1,5 +1,4 @@
 import sys
-
 from PyQt6.QtCore import QRect
 from PyQt6.QtWidgets import QWidget, QApplication, QPushButton, QStackedWidget, QLabel
 
@@ -40,33 +39,67 @@ class Entradas(QWidget):
         panel_botones.setStyleSheet("background-color:rgb(255,0,0);")
 
         self.boton_nueva=QPushButton("Nueva",panel_botones)
+        self
         self.boton_nueva.setGeometry(0,0,80,30)
-        self.boton_nueva.setStyleSheet("background-color: #cccccc;"
-                                       "border:1px solid black;"
-                                       "padding:5px;"
-                                       "border-radius:5px;")
+        self.boton_nueva.setCheckable(True)
+        self.boton_nueva.setChecked(True)
+        self.boton_nueva.setStyleSheet("""
+                        QPushButton {
+                            background-color: #cccccc;
+                            border:1px solid black;
+                            padding:5px;
+                            border-radius:5px;
+                            }
+                        QPushButton:checked{
+                            background-color: #ffebcd;
+                            border-bottom:2px solid black;
+                            font-weight:bold;
+                            }""")
         self.boton_nueva.clicked.connect(self.nueva_entrada)
 
         self.boton_listado = QPushButton("Listado", panel_botones)
         self.boton_listado.setGeometry(100, 0, 80, 30)
-        self.boton_listado.setStyleSheet("background-color: #cccccc;"
-                                       "border:1px solid black;"
-                                       "padding:5px;"
-                                       "border-radius:5px;")
+        self.boton_listado.setCheckable(True)
+        self.boton_listado.setStyleSheet("""
+                        QPushButton {
+                            background-color: #cccccc;
+                            border:1px solid #444;
+                            padding:5px;
+                            border-radius:5px;
+                            }
+                        QPushButton:checked{
+                            background-color: #ffebcd;
+                            border-bottom:2px solid black;
+                            font-weight:bold;
+                            }""")
         self.boton_listado.clicked.connect(self.listado_entrada)
 
         self.boton_salir = QPushButton("Salir", panel_botones)
         self.boton_salir.setGeometry(200, 0, 80, 30)
-        self.boton_salir.setStyleSheet("background-color: #cccccc;"
-                                         "border:1px solid black;"
-                                         "padding:5px;"
-                                         "border-radius:5px;")
-        self.boton_salir.clicked.connect(sys.exit)
+        self.boton_salir.setCheckable(True)
+        self.boton_salir.setStyleSheet("""
+                        QPushButton {
+                            background-color: #cccccc;
+                            border:1px solid #444;
+                            padding:5px;
+                            border-radius:5px;
+                            }
+                        QPushButton:checked{
+                            background-color: #ffebcd;
+                            border-bottom:2px solid black;
+                            font-weight:bold;
+                            }""")
+        self.boton_salir.clicked.connect(self.cerrar_app)
     def nueva_entrada(self):
         self.panel_datos.setCurrentIndex(0)
+        self.boton_nueva.setChecked(True)
+        self.boton_listado.setChecked(False)
     def listado_entrada(self):
         self.panel_datos.setCurrentIndex(1)
-
+        self.boton_nueva.setChecked(False)
+        self.boton_listado.setChecked(True)
+    def cerrar_app(self):
+        sys.exit()
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ventana=Entradas()
