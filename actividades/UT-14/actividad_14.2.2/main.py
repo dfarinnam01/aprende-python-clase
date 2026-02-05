@@ -121,7 +121,21 @@ class Articulos(QMainWindow):
             self.mensaje(f'Articulo con Referencia "{ref}" borrado')
 
     def modificar(self):
-        pass
+        ref = self.ref.text().strip()
+
+        for a in self.articulos:
+            if a["ref"] == ref:
+                a["desc"] = self.desc.text().strip()
+                a["precio"] = self.precio.text().strip()
+                a["stock"] = self.stock.text().strip()
+                a["obs"] = self.obs.text().strip()
+
+                self.guardar_datos()
+                self.limpiar()
+                self.mensaje("Artículo modificado")
+                return
+
+        self.mensaje("No existe la referencia")
 
     def listar(self):
         texto = "<b>Listado de artículos</b><br><br>"
