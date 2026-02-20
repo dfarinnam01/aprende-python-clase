@@ -1,5 +1,7 @@
 CREATE DATABASE MiBaseDeDatos;
 
+use MiBaseDeDatos;
+
 CREATE TABLE tb_usuarios_tipos (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_tipo VARCHAR(50) NOT NULL

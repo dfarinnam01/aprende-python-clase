@@ -9,7 +9,7 @@ def connect():
     )
     return cnx
 def menu():
-    op=-1
+    op=""
     while op not in [1,2,3,4,5]:
         print("1.Listado de usuarios")
         print("2.Añadir Usuario")
