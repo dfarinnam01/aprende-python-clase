@@ -5,11 +5,11 @@ from PyQt6.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QPushButton, QStackedWidget
 )
 
-from ventanas import (
-    PaginaAlta, PaginaListado,
-    PaginaModificar, PaginaBaja,
-    PaginaConsulta
-)
+from ventanas.alta import PaginaAlta
+from ventanas.listado import PaginaListado
+from ventanas.modificar import PaginaModificar
+from ventanas.baja import PaginaBaja
+from ventanas.consulta import PaginaConsulta
 
 FICHERO = "articulos.dat"
 
