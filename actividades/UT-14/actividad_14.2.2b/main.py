@@ -37,7 +37,6 @@ class Articulos(QMainWindow):
         self.setCentralWidget(central)
         layout = QVBoxLayout(central)
 
-        # -------- Barra botones --------
         barra = QHBoxLayout()
 
         self.btn_alta = QPushButton("Alta")
@@ -58,7 +57,6 @@ class Articulos(QMainWindow):
 
         layout.addLayout(barra)
 
-        # -------- Stack --------
         self.stack = QStackedWidget()
         layout.addWidget(self.stack)
 
@@ -74,14 +72,18 @@ class Articulos(QMainWindow):
         self.stack.addWidget(self.pag_baja)
         self.stack.addWidget(self.pag_consulta)
 
-        # -------- Conexiones --------
         self.btn_alta.clicked.connect(lambda: self.stack.setCurrentWidget(self.pag_alta))
         self.btn_listado.clicked.connect(lambda: self.stack.setCurrentWidget(self.pag_listado))
         self.btn_mod.clicked.connect(lambda: self.stack.setCurrentWidget(self.pag_mod))
         self.btn_baja.clicked.connect(lambda: self.stack.setCurrentWidget(self.pag_baja))
         self.btn_consulta.clicked.connect(lambda: self.stack.setCurrentWidget(self.pag_consulta))
 
-    # -------- Cargar datos --------
+        self.stack.currentChanged.connect(self.actualizar_listado_auto)
+
+    def actualizar_listado_auto(self):
+        if self.stack.currentWidget() == self.pag_listado:
+            self.pag_listado.mostrar()
+
     def cargar_datos(self):
         self.articulos.clear()
 
@@ -99,12 +101,11 @@ class Articulos(QMainWindow):
                 self.articulos.append({
                     "ref": ref,
                     "desc": desc,
-                    "precio": precio,
-                    "stock": stock,
+                    "precio": float(precio),
+                    "stock": int(stock),
                     "obs": obs
                 })
 
-    # -------- Guardar datos --------
     def guardar_datos(self):
         with open(FICHERO, "w", encoding="utf-8") as f:
             for a in self.articulos:
