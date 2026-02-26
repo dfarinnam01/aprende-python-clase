@@ -5,6 +5,7 @@ class LibroDB:
     SELECT="SELECT id,isbn,titulo,autor,editorial, fecha_publicacion FROM libros"
     def __init__(self,db_name="libros2.db"):
         self.conexion = sqlite3.connect(db_name)
+        self.conexion.row_factory=sqlite3.Row
         self.cursor = self.conexion.cursor()
         self._crear_tablas()
 
@@ -54,23 +55,30 @@ class LibroDB:
         self.cursor.execute(sql,(isbn,titulo,autor,editorial,fecha_publicacion,id))
         self.conexion.commit()
 
-    def get_libro(self,id)->tuple:
+    def get_libro(self,id)->dict:
         sql = LibroDB.SELECT + " WHERE id=?"
         self.cursor.execute(sql, (id,))
         libro = self.cursor.fetchone()
-        return libro
+        return dict(libro)
 
     def get_all_libros(self)->list:
         sql = LibroDB.SELECT
         self.cursor.execute(sql)
         libros = self.cursor.fetchall()
-        return libros
+        libros_dict=[dict(libro) for libro in libros]
+        return libros_dict
 
-    def get_by_isbn(self,isbn)->tuple:
+    def get_by_isbn(self,isbn)->dict:
         sql = "SELECT id,isbn,titulo,autor,editorial, fecha_publicacion FROM libros WHERE isbn=?"
         self.cursor.execute(sql, (isbn,))
         libro = self.cursor.fetchone()
-        return libro
+        return dict(libro)
+
+    def get_filter_autor(self,autor)->dict:
+        sql = "SELECT id,isbn,titulo,autor,editorial, fecha_publicacion FROM libros WHERE autor=?"
+        self.cursor.execute(sql, (autor,))
+        libros = self.cursor.fetchall()
+        return dict(libros)
 
     def update_by_isbn(self,isbn):
         sql = "UPDATE libros SET titulo=?, autor=?,editorial=?,fecha_publicacion=? WHERE isbn=?"
@@ -87,11 +95,6 @@ class LibroDB:
         self.cursor.execute(sql, (isbn,))
         self.conexion.commit()
 
-    def get_filter_autor(self,autor):
-        sql = "SELECT id,isbn,titulo,autor,editorial, fecha_publicacion FROM libros WHERE autor=?"
-        self.cursor.execute(sql, (autor,))
-        libros = self.cursor.fetchall()
-        return libros
 
     def close(self):
         self.cursor.close()
@@ -99,9 +102,7 @@ class LibroDB:
 
 if __name__ == "__main__":
     db=LibroDB()
-    id = db.add_libro({"isbn":231214,"titulo":"Libro 1","editorial":"Paco y yo","autor":"Paco","fecha_publicacion":15})
+    db.add_libro({"isbn":231214,"titulo":"Libro 1","editorial":"Paco y yo","autor":"Paco","fecha_publicacion":15})
     for libro in db.get_all_libros():
         print(libro)
-    print(db.get_libro(id))
-    db.delete_by_isbn(231214)
-
+    print(db.get_by_isbn(231214))
