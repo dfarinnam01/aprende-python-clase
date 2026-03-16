@@ -1,0 +1,1 @@
+docker run -it --name cepy_ubuntu -p 33060:3306 -p 8080:80 -p 50000:5000 -v .\home_ubuntu:/home ubuntu:24.04 bash
