@@ -1,1 +1,67 @@
 docker run -it --name cepy_ubuntu -p 33060:3306 -p 8080:80 -p 50000:5000 -v .\home_ubuntu:/home ubuntu:24.04 bash
+docker run -it --name cepy_ubuntu -v .\home_ubuntu:/home -p 33060:3306 -p 50000:5000 -p 800:80 -p 2222:22 ubuntu bash
+
+docker exec -it cepy_ubuntu bash
+
+apt update
+apt upgrade -y
+apt install -y python3 python3-pip python3-venv curl wget git
+apt install -y nano
+apt install sudo -y
+
+cd
+mkdir aprende
+cd aprende
+python3 -m venv .venv
+source .venv/bin/activate
+
+apt update
+apt upgrade –y
+apt install openssh-server -y
+mkdir /var/run/sshd
+service ssh start
+service ssh status
+
+useradd -m cepy
+passwd cepy
+    castelar
+usermod -aG sudo cepy
+su - cepy
+
+#Instalacion de mysql server
+    sudo apt update
+    sudo apt upgrade -y
+    sudo apt install mysql-server -y
+sudo service mysql start
+sudo service mysql status
+sudo mysql -u root
+----------
+show databases;
+use {base de datos}; ej:mysql;
+show tables;
+select * from user;
+select * from user \G
+select host,user from user;
+
+CREATE DATABASE aprende01;
+USE aprende01;
+CREATE TABLE libros(id INTEGER AUTO_INCREMENT PRIMARY KEY,isbn VARCHAR(25) UNIQUE NOT NULL);
+INSERT INTO libros (isbn) VALUES("1234");
+SELECT * FROM libros;
+
+
+CREATE USER 'cepy'@'%' IDENTIFIED BY 'castelar2026';
+GRANT ALL PRIVILEGES ON *.* TO 'cepy'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+sudo mysql -u cepy -p
+sudo mysql -h 192.168.60.54 -u cepy -p
+
+Revisar la configuracion mysql
+    nano /etc/mysql/mysql.conf.d/mysqld.cnf
+    y cambiamos el bind address y el de abajo y ponemos las ips a 0
+    service mysql restart
+ mysql -h 192.168.60.54 --port=33060 -u cepy -p
+
+establecemos password de root en mysql server
+ALTER USER 'root'@localhost'
