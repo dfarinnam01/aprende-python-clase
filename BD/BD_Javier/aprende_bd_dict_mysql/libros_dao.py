@@ -14,10 +14,11 @@ class LibrosDao:
     def add(self, libro):
         sql = f"""INSERT INTO {self.table_name} 
                  (isbn, titulo, autor, editorial, fecha_publicacion,descripcion)
-                 VALUES (?, ?, ?, ?, ?, ?)"""
+                 VALUES (%s, %s, %s, %s, %s, %s)"""
         try:
             with self.conn:
-                cur= self.conn.execute(sql, (
+                cursor=self.conn.cursor()
+                cursor.execute(sql, (
                     libro.get("isbn",None),
                     libro.get("titulo",None),
                     libro.get("autor",None),
@@ -25,8 +26,11 @@ class LibrosDao:
                     libro.get("fecha_publicacion",None),
                     libro.get("descripcion",None)
                 ))
-            self.logger.info(f"Se ha añadido el libro de isbn {libro.get('isbn',None)}")
-            return cur.lastrowid
+            #self.conn.commit()
+            cursor.close()
+            last_id = cursor.lastrowid
+            self.logger.info(f"Se ha añadido el libro de isbn {libro.get('isbn',None)} con el id {last_id}")
+            return last_id
         except Exception as e:
             self.logger.error(f"No se ha añadido el libro de isbn {libro.get('isbn',None)}: {e}")
             return -1
@@ -34,7 +38,7 @@ class LibrosDao:
     def add_list(self, libros):
         sql = f"""INSERT INTO {self.table_name} 
                          (isbn, titulo, autor, editorial, fecha_publicacion,descripcion)
-                         VALUES (?, ?, ?, ?, ?, ?)"""
+                         VALUES (%s, %s, %s, %s, %s, %s)"""
         datos=[(libro.get("isbn",None),libro.get("titulo",None),libro.get("autor",None),libro.get("editorial",None),
                libro.get("fecha_publicacion",None),libro.get("descripcion",None)) for libro in libros]
 
@@ -131,12 +135,15 @@ class LibrosDao:
         return dict(row) if row else None
 
     def get_all(self)->list:
-        with self.conn:
-            cur = self.conn.execute(self.SELECT)
-            lista = cur.fetchall()
-            #libros_dict = [dict(e) for e in lista]
-            #libros_dict = [dict(libro) for libro in lista]
-            return [dict(row)for row in lista]
+        try:
+            cursor = self.conn.cursor(dictionary=True)
+            cursor.execute(self.SELECT)
+            libros = cursor.fetchall()
+            cursor.close()
+            return libros
+        except Exception as e:
+            self.logger.error(e)
+            return []
 
 
     def get_filter_autor(self,autor)->list:

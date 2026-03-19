@@ -21,7 +21,7 @@ cursor = conexion.cursor()
 # Insertar 100 registros
 sql_insert = "INSERT INTO libros (isbn) VALUES (%s)"
 
-for i in range(100):
+for i in range(4):
     isbn = fake.isbn13()
     cursor.execute(sql_insert, (isbn,))
 
