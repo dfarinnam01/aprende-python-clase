@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
 app = Flask(__name__)
 
@@ -33,5 +33,10 @@ def consulta(id_entrada):
 def saludo1():
     return ("<html><body><p>Saludos <b>D.Pepito</p></body></html>"
             "")
+
+@app.route("/saludo2/<nombre>")
+def saludo2(nombre):
+    return render_template("saludos.html", nombre=nombre)
+
 if __name__ == "__main__":
     app.run(debug=True)
