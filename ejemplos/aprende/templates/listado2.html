@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 style="text-align:center">Lista de Personas</h1>
+<table style="width: 100%; border:1px solid #f44336">
+    <thead>
+    <tr>
+        <th style="text-align:left">Nombre</th>
+        <th>Sueldo</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for empleado in empleados %}
+    <tr>
+        <td style="border:1px solid; padding: 2px 5px 2px 5px">{{ empleado["nombre"] }} {{ empleado["apellidos"]}}</td>
+        <td  style="border:1px solid">{{ empleado["sueldo"]}}</td>
+    </tr>
+    {% endfor %}
+     </tbody>
+</table>
+</body>
+</html>
