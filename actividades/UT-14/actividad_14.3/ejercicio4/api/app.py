@@ -32,8 +32,9 @@ def nueva():
         "num_entrada": num_entrada,
         "dni": dni
     })
+    entrada={"id": contador_entradas,"num_entrada": num_entrada,"dni": dni}
 
-    data={"posicion": len(entradas)-1, "msg": f"La entrada {num_entrada} ha sido añadida"}
+    data={"entrada": entrada, "msg": f"La entrada {num_entrada} ha sido añadida"}
     return jsonify(data)
 
 @app.route("/api/entradas")
@@ -44,7 +45,7 @@ def listado_entradas():
 def get(id_entrada):
     for entrada in entradas:
         if entrada["id"] == id_entrada:
-            return jsonify({"entrada":entrada,"msg": f"La entrada {id_entrada} encontrada"}), 404
+            return jsonify({"entrada":entrada,"msg": f"La entrada asociada al id {id_entrada} es {entrada['num_entrada']} encontrada"})
     return jsonify({
         "msg": f"La entrada {id_entrada} no existe"
     }), 404

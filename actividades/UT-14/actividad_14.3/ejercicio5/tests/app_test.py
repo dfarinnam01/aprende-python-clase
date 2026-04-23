@@ -24,6 +24,6 @@ if __name__ == '__main__':
     status, data = api_entradas.get(entrada_id)
     print(data)
     if (status == 200):
-        print(f"Entrada guardada")
+        print(f"Entrada encontrada con el id {entrada_id}")
     else:
         print(f"No se ha podido guardar la entrada:{num_entrada}")

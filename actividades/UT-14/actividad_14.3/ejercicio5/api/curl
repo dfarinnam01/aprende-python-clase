@@ -1,0 +1,7 @@
+curl -X POST http://127.0.0.1:5000/api/entradas -H "Content-Type: application/json" -d "{\"num_entrada\":\"123\",\"dni\":\"12345678A\"}"
+curl -X POST http://127.0.0.1:5000/api/entradas -H "Content-Type: application/json" -d "{\"num_entrada\":\"789\",\"dni\":\"45623453K\"}"
+curl -X DELETE http://127.0.0.1:5000/api/entradas/0
+
+curl -X PUT http://127.0.0.1:5000/api/entradas/0 -H "Content-Type: application/json" -d "{\"num_entrada\":\"999\",\"dni\":\"12345678A\"}"
+
+curl -X POST http://127.0.0.1:5000/api/entradas -H "Content-Type: application/json" -d "{\"dni\":\"45623453K\"}"
