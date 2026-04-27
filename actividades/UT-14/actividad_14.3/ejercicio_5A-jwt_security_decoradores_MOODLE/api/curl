@@ -1,0 +1,34 @@
+curl -X POST http://localhost:5000/api/auth/register -H "Content-Type: application/json" -d "{\username\": \"user\",\"password\": \"1234\"}"
+--------
+Registro de usuario:
+curl -X POST http://localhost:5000/api/auth/register ^
+-H "Content-Type: application/json" ^
+-d "{\"username\": \"user\", \"password\": \"1234\"}"
+
+Login:
+curl -X POST http://localhost:5000/api/auth/login ^
+-H "Content-Type: application/json" ^
+-d "{\"username\": \"user\", \"password\": \"1234\"}"
+
+Lista de usuarios (No tiene acceso)
+set TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3NzMxMzEwOSwianRpIjoiODljMDcxYjYtMDY1NC00ZGYxLWEyNzktMTM1ODc1NTljMDVkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NzczMTMxMDksImNzcmYiOiI3M2Q4YzliMy1lNDg5LTRhNDQtODc1Yi0xMmY5MWJiMjk3YjUiLCJleHAiOjE3NzczMTQ5MDksInJvbGUiOiJVU0VSIn0.pkZu0aG6D2K_TUBPFhvWKfQ4kT01yxOuYsBJIoWh1pw
+curl -i ^
+    http://localhost:5000/api/auth/users ^
+    -H"Authorization: Bearer %TOKEN%
+--------
+Registro de admin:
+curl -X POST http://localhost:5000/api/auth/register-developer ^
+-H "Content-Type: application/json" ^
+-d "{\"username\": \"admin\", \"password\": \"1234\", \"role\": \"ADMIN\"}"
+
+Login:
+curl -X POST http://localhost:5000/api/auth/login ^
+-H "Content-Type: application/json" ^
+-d "{\"username\": \"admin\", \"password\": \"1234\"}"
+
+Lista de usuarios (Si tiene acceso)
+set TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3NzMxNDI3OCwianRpIjoiN2U2OGEzNGEtNjVmNC00ODZmLTk2MWQtOGE2OTU4MDQxZjJlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NzczMTQyNzgsImNzcmYiOiIyZmVjYTUzMy0yZDk3LTRlZDktODZlYi1mM2QxY2FiYWQ3OWYiLCJleHAiOjE3NzczMTYwNzgsInJvbGUiOiJBRE1JTiJ9.NMhWzybsqoLIBAzU-Dg5-3u-vFRvUmM0LLokhF0zE1U
+curl -i ^
+    http://localhost:5000/api/auth/users ^
+    -H"Authorization: Bearer %TOKEN%
+
