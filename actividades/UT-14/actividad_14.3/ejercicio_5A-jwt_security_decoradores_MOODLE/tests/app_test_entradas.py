@@ -43,6 +43,10 @@ if __name__ == "__main__":
                     data: {data}""")
     print("-" * 80)
 
+    peticion("Listado de entradas:")
+    status, data = api_entradas.list_all()
+    respuesta(data)
+
     api_entradas.token = auth.token
     peticion("Crear Entrada")
 
@@ -56,3 +60,29 @@ if __name__ == "__main__":
     else:
         respuesta(f"Error al crear entrada: {data}")
     print("-"*80)
+
+    peticion("Listado de entradas:")
+    status, data = api_entradas.list_all()
+    respuesta(data)
+    print("-" * 80)
+
+    peticion("Actualizar entradas:")
+
+    id=int(input("ID: "))
+    num_entrada = input("Num entrada: ")
+    dni = input("DNI: ")
+    json = {"num_entrada": num_entrada, "dni": dni}
+    status, data = api_entradas.update(id,data)
+    respuesta(data)
+    print("-"*80)
+
+    peticion("Eliminar entrada:")
+    id = int(input("Introduce ID: "))
+    status, data = api_entradas.delete(id)
+    respuesta(data)
+    print("-" * 80)
+
+    peticion("Listado de entradas:")
+    status, data = api_entradas.list_all()
+    respuesta(data)
+    print("-" * 80)
