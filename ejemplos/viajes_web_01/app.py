@@ -3,6 +3,8 @@ import os
 from flask import Flask, render_template
 
 from config import Config
+from utils.utils_files import save_image
+from forms import ViajeForm
 from filtros import Filtros
 from models import db,Viaje
 
@@ -23,7 +25,12 @@ def index():
 
 @app.route('/nuevo',methods=['GET','POST'])
 def nuevo_viaje():
-    return render_template('viajes/nuevo.html')
+    form = ViajeForm()
+    if form.validate_on_submit():
+        foto_nombre,thumnail_nombre=save_image(form.foto.data)
+        print("OK")
+        return render_template('index.html')
+    return render_template('viajes/nuevo.html',form=form)
 
 @app.route('/listado',methods=['GET','POST'])
 def listado_viajes():

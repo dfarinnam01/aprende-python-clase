@@ -1,45 +1,25 @@
-#=====================================================
-#                    FUNCIONES
-#=====================================================
-
-'''
-Modulo: funciones asistentes
-Autor:David Fariña
-Descripcion:
-    Contiene funciopnes operattiva con la coleccion de entradas
-    Version 1.0
-'''
-datos_entradas = []
+libros = []
 def menu():
-    '''
-    Le un menu e pide al usuario un opcion a pedir de este
-    Retorna la opcion elegida
-    '''
     try:
-        print("\n1______________Nueva entrada")
-        print("2______________Consultar entrada")
-        print("3______________Listado entradas")
+        print("\n1______________Nueva libro")
+        print("2______________Consultar libro")
+        print("3______________Listado de libros")
+        print("4______________Borrar libro")
         print("0______________Salir\n")
 
         opcion = int(input("Selecciona una opción: "))
         return opcion
     except:
         print("OPCION NO VALIDA")
-def nueva_entrada():
-    num_entrada = input("Introduce su número de entrada: ")
-    if num_entrada not in [dato["entrada"] for dato in datos_entradas]:
-        print("Acceso Permitido")
-        nombre = input("Ingrese nombre: ")
-        dni = input("Ingrese DNI: ")
-        mayor_edad = ""
-        while mayor_edad != "s" and mayor_edad != "n":
-            mayor_edad = input("¿Es mayor de edad? (s/n): ")
-        edad = 1 if mayor_edad == "s" else 0
-        datos_entradas.append({
-            "entrada": num_entrada,
-            "nombre": nombre,
-            "dni": dni,
-            "mayor_edad": edad
+def nuevo_libro():
+    isbn = input("Introduce ISBN del libro: ")
+    if isbn not in [libro["isbn"] for libro in libros]:
+        titulo = input("Ingrese titulo del libro: ")
+        autor = input("Ingrese autor: ")
+        libros.append({
+            "isbn": isbn,
+            "titulo": titulo,
+            "autor": autor
         })
 def consulta_entrada():
     print("CONSULTA")
