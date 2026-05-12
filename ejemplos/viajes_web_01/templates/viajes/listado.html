@@ -3,9 +3,38 @@
 {% block content %}
 <div>
     <div>
-        <h1><i class="fas fa-globe-europe"></i>Listado</h1>
-        <h1>¡Planifica tu proxima aventura!</h1>
+        <p>Se encontraron {{ viajes | length }} viaje(s)</p>
     </div>
-    ...
+    <table class="table">
+  <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">Destino</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Foto</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for viaje in viajes %}
+    <tr>
+      <th scope="row">1</th>
+        <td>{{ viaje.titulo }}</td>
+        <td>{{ viaje.destino }}</td>
+        <td>{{ viaje.fecha_viaje | fecha_hora }}</td>
+        <td>{{ viaje.precio |euros }}</td>
+        <td>
+            {% if viaje.foto_miniatura %}
+            {{ viaje.foto_miniatura }}
+            <img src="{{ viaje.foto_miniatura | thumbnail_url }}"style="height: 40px;" >
+            {% else %}
+                <i class="fas fa-image"></i>
+            {% endif %}
+        </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
 </div>
 {% endblock %}

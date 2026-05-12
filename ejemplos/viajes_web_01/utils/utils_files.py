@@ -50,3 +50,27 @@ def save_image(file):
         return unique_filename, thumbnail_filename
 
     return None, None
+def delete_image(unique_filename, thumbnail_filename=None):
+    """Elimina la imagen y su thumbnail del sistema de archivos"""
+    deleted = {"image": False, "thumbnail": False}
+
+    # Eliminar imagen principal
+    if unique_filename:
+        upload_folder_images = "static/" + current_app.config['UPLOAD_FOLDER_IMAGES']
+        filepath_image = os.path.join(upload_folder_images, unique_filename)
+
+        if os.path.exists(filepath_image):
+            os.remove(filepath_image)
+            deleted["image"] = True
+
+    # Eliminar thumbnail
+    thumb_name = thumbnail_filename or (f"thumb_{unique_filename}" if unique_filename else None)
+    if thumb_name:
+        upload_folder_thumbnails = "static/" + current_app.config['UPLOAD_FOLDER_IMAGES_THUMBNAILS']
+        filepath_thumbnail = os.path.join(upload_folder_thumbnails, thumb_name)
+
+        if os.path.exists(filepath_thumbnail):
+            os.remove(filepath_thumbnail)
+            deleted["thumbnail"] = True
+
+    return deleted

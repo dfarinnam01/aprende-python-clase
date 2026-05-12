@@ -21,11 +21,11 @@ class ViajeForm(FlaskForm):
         Length(min=10, message='La descripcion debe de tener al menos 10 caracteres')
     ])
     fecha_viaje = DateTimeField('Fecha del viaje', validators=[
-        DataRequired(message='El titulo es obligatorio')
-    ],format='%d/%m/%Y')
+        DataRequired(message='La fecha es obligatoria')
+    ],format='%Y-%m-%d %H:%M')
 
     duracion_dias = IntegerField('Duracion(dias)', validators=[
-        DataRequired(message='La duracion es obligatorio'),
+        DataRequired(message='La duracion es obligatoria'),
         NumberRange(min=1,max=365, message='La duracion debe de ser entre 1 y 365 dias')
     ])
     precio = FloatField('Precio(€)', validators=[
